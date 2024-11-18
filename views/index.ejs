@@ -11,28 +11,27 @@
 <body>
     <div class=" block main w-full min-h-screen bg-zinc-900">
         <div class="form p-10">
-            <form action="">
-                <input type="text" placeholder="Enter title here .... " class="bg-zinc-800 text-white w-full px-5 py-2 rounded-md outline-none" />
-                <textarea placeholder="Enter description here ...." class="bg-zinc-800 mt-5 text-white w-full px-5 py-2 rounded-lg outline-none resize-none" ></textarea>
+            <form action="/create" method="post">
+                <input type="text" placeholder="Enter title here .... " name="title" class="bg-zinc-800 text-white w-full px-5 py-2 rounded-md outline-none" />
+                <textarea placeholder="Enter description here ...." name="details" class="bg-zinc-800 mt-5 text-white w-full px-5 py-2 rounded-lg outline-none resize-none" ></textarea>
                 <input type="submit" class="mt-2 bg-blue-500 text-white px-5 py-2 rounded-md">
             </form>
         </div>
+       
+
         <div class="tasks p-10 flex flex-wrap gap-5">
-            <div class="task hidden bg-zinc-800 w-72 px-3 rounded-md py-4 ">
-                <h1 class="text-white text-2xl tracking-tighter ">Some Tasks Goes here </h1>
-                <a  class = " text-blue-500 inline-block mt-3  "href="">Read more ...</a>
-            </div>
 
-            <div class="task hidden bg-zinc-800 w-72 px-3 py-4 rounded-md ">
-                <h1 class="text-white text-2xl tracking-tighter ">Some Tasks Goes here </h1>
-                <a  class = " text-blue-500 inline-block mt-3 "href="">Read more ...</a>
-            </div>
-
-            <div class="task hidden bg-zinc-800 w-72 px-3 py-4 rounded-md ">
-                <h1 class="text-white text-2xl tracking-tighter ">Some Tasks Goes here </h1>
-                <a  class = " text-blue-500 inline-block mt-3  "href="">Read more ...</a>
-            </div>
-            <h2 class="bg-zinc-700">No tasks yet.</h2>
+            <% if(files.length > 0){  %>
+                <% files.forEach(function(val) {  %>
+                    <div class="task  bg-zinc-800 min-w-72 px-3 rounded-md py-4 ">
+                        <h1 class="text-white text-2xl tracking-tighter "><%= val %> </h1>
+                        <a  class = " text-blue-500 inline-block mt-3  "href="">Read more ...</a>
+                    </div>
+                    <% }) %>
+               <% } else { %>
+                   <h2 class="bg-zinc-700">No tasks yet.</h2>
+               <% } %>
+              
         </div>
     </div>
 </body>
